@@ -2,8 +2,8 @@ Package: nopaco
 Type: Package
 Title: Non-Parametric Concordance Coefficient: A Non-Parametric
         Concordance Test
-Version: 0.99.7
-Date: 2017-01-18
+Version: 0.99.8
+Date: 2017-01-19
 Authors@R: c(
     person("Rowan","Kuiper",email="r.kuiper.emc@gmail.com",role=c("cre","aut")),
     person("Remco","Hoogenboezem",role=c("aut")),
@@ -15,9 +15,9 @@ Description: A non-parametric test for multi-observer concordance and
 License: GPL (>= 3)
 Imports: methods, Matrix (>= 1.1.5), parallel, stats
 Suggests: MASS
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000
 NeedsCompilation: yes
-Packaged: 2017-01-18 10:53:22 UTC; rowan
+Packaged: 2017-01-19 11:04:23 UTC; rowan
 Author: Rowan Kuiper [cre, aut],
   Remco Hoogenboezem [aut],
   Sjoerd Huisman [ctb],
@@ -26,4 +26,4 @@ Author: Rowan Kuiper [cre, aut],
     src/densehash directory)
 Maintainer: Rowan Kuiper <r.kuiper.emc@gmail.com>
 Repository: CRAN
-Date/Publication: 2017-01-18 18:07:38
+Date/Publication: 2017-01-19 15:15:09
