@@ -1,16 +1,36 @@
 #' @rdname getPsi-methods
 #' @export
-setMethod( 
-    f= "getPsi", 
+setMethod(
+    f= "getPsi",
     signature= signature(x="matrix",y="missing"),
     function(x,y,...){
-        getPsi(x=x,y=matrix(ncol=0,nrow=0))
+        getPsi(x=x,y=matrix(ncol=0,nrow=0),...)
+    }
+)
+
+#' @rdname getPsi-methods
+#' @export
+setMethod(
+    f= "getPsi",
+    signature= signature(x="data.frame",y="missing"),
+    function(x,y,...){
+       getPsi(x=as.matrix(x),y=matrix(ncol=0,nrow=0),...)
     }
 )
 #' @rdname getPsi-methods
 #' @export
-setMethod( 
-    f= "getPsi", 
+setMethod(
+    f= "getPsi",
+    signature= signature(x="data.frame",y="data.frame"),
+    function(x,y,...){
+       getPsi(x=as.matrix(x),y=as.matrix(y),...)
+    }
+)
+
+#' @rdname getPsi-methods
+#' @export
+setMethod(
+    f= "getPsi",
     signature= signature(x="matrix",y="NULL"),
     function(x,y,...){
 		dots<-list(...);
@@ -21,8 +41,8 @@ setMethod(
 )
 #' @rdname getPsi-methods
 #' @export
-setMethod( 
-    f= "getPsi", 
+setMethod(
+    f= "getPsi",
     signature= signature(x="matrix",y="matrix"),
     function(x,y,...){
         dots<-list(...);
@@ -41,6 +61,8 @@ setMethod(
         }
     }
 )
+
+
 
 getVar<-function(mat,...){
     dots<-list(...)
@@ -70,7 +92,7 @@ getVar<-function(mat,...){
         missingy<-is.finite(missingy)
     }
 
-	if (exists(".Random.seed", .GlobalEnv)) { 
+	if (exists(".Random.seed", .GlobalEnv)) {
         oldseed <- .GlobalEnv$.Random.seed
     } else {
         oldseed <- NULL
@@ -113,12 +135,11 @@ exactProb<-function(bn, ...){
     res<-.Call(
         'exactDistr202',
         bn,
-        as.logical(skipTests),
-        as.logical(options("concordance.verbose")$concordance.verbose))
-    
+        as.logical(skipTests))
+
     return(res)
 }
- 
+
 #' @aliases rfromPsi
 #' @title Convertion between Pearson correlation and the non paramtric concordance coefficient
 #'
@@ -132,9 +153,9 @@ exactProb<-function(bn, ...){
 #' The convertion is performed following the relationship described by Rothery (1979).
 #' \code{2*cos(pi*(1-psi))-1}
 #'
-#' @references Rothery, P. 'A nonparametric measure of intraclass correlation', Biometrika, 66, 3, 629-639  (1979). 
+#' @references Rothery, P. 'A nonparametric measure of intraclass correlation', Biometrika, 66, 3, 629-639  (1979).
 #'
-#'  
+#'
 #' @family concordance functions
 #'
 #' @docType methods
@@ -144,11 +165,11 @@ exactProb<-function(bn, ...){
 #'
 #' #Generate a matrix without concordance
 #' matRandom <- matrix(rnorm(30),10,3)
-#' result<-concordance.test(matRandom) 
+#' result<-concordance.test(matRandom)
 #' getPsi(result) #concordance coefficient
 #' result$ci      #95% confidence interval
-#' 
-#' #Corresonding Pearson correlation 
+#'
+#' #Corresonding Pearson correlation
 #' rfromPsi(getPsi(result))
 #' rfromPsi(result$ci)
 #'
@@ -184,7 +205,7 @@ psifromR<-function(r){
     ##If y is given:
     ###Stops if rownames between x and y are not similar
     ###Warns if colnames between x and y are not similar
-    
+
     ##Excludes observations with less than two replicates in either x or y
     #Sets any non-finite values (e.g. NA's) explicitly to infinite which is used in external C code.
 	numOfTies<-0;
@@ -208,9 +229,9 @@ psifromR<-function(r){
         ##Check for ties
         t1<-table(rank(x)) ##First rank, otherwise number close to machine precision will be seen as ties
         numOfTies<-sum(t1[which(t1>1)])
-		
 
-        #Check y compatability with x 
+
+        #Check y compatability with x
         if (!is.null(y) ){
             y[!is.finite(y)]<-NA
             ##Check for ties
@@ -258,7 +279,7 @@ psifromR<-function(r){
 		    }
 		    if ( (sum(!isOK1)+sum(!isOK2))>0){
 		        warning(paste("Excluding observations with less than two known replicates (n=",sum(!isOK1)+sum(!isOK2),")",sep=""))
-		    }    
+		    }
 		}###END: TEST
     }
     x[!is.finite(x)]<-Inf
@@ -275,9 +296,11 @@ getAgreeMat<-function(mat){
     n<-matrix(1,ncol=ncol(mat),nrow=ncol(mat))
     for (i in c(1:(ncol(mat)-1))){
     for (j in c((i+1):(ncol(mat)))){
+		#cat("i=",i," j=",j,"\n");
         n[i,j]<-n[j,i]<-sum(rowSums(is.finite(mat[,c(i,j)]))==2)
         if (n[i,j]>1){
-            am[i,j]<-am[j,i]<-getPsi(mat[rowSums(is.finite(mat[,c(i,j)]))==2,c(i,j)])
+			tmpMat<-mat[rowSums(is.finite(mat[,c(i,j)]))==2,c(i,j)]
+            am[i,j]<-am[j,i]<-getPsi(tmpMat)
         }
     }}
     diag(am)<-1
