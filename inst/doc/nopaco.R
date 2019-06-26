@@ -2,25 +2,25 @@
 ### Encoding: UTF-8
 
 ###################################################
-### code chunk number 1: nopaco.Rnw:29-29
+### code chunk number 1: nopaco.Rnw:24-24
 ###################################################
 
 
 
 ###################################################
-### code chunk number 2: nopaco.Rnw:40-41
+### code chunk number 2: nopaco.Rnw:35-36
 ###################################################
 library(nopaco)
 
 
 ###################################################
-### code chunk number 3: nopaco.Rnw:45-46
+### code chunk number 3: nopaco.Rnw:40-41
 ###################################################
 data(scores)
 
 
 ###################################################
-### code chunk number 4: nopaco.Rnw:50-93
+### code chunk number 4: nopaco.Rnw:45-88
 ###################################################
 scatterBarNorm <- function(x, dcol="blue", lhist=20, num.dnorm=5*lhist, xlab,ylab,main,...){
 ## check input
@@ -84,28 +84,28 @@ invisible(dev.off())
 
 
 ###################################################
-### code chunk number 7: nopaco.Rnw:117-119
+### code chunk number 7: nopaco.Rnw:112-114
 ###################################################
 getPsi( scores[["modelA"]] )
 getPsi( scores[["modelB"]] )
 
 
 ###################################################
-### code chunk number 8: nopaco.Rnw:123-125
+### code chunk number 8: nopaco.Rnw:118-120
 ###################################################
 concordance.test( scores[["modelA"]] )
 concordance.test( scores[["modelB"]] )
 
 
 ###################################################
-### code chunk number 9: nopaco.Rnw:129-131
+### code chunk number 9: nopaco.Rnw:124-126
 ###################################################
 diffTest<-concordance.test(scores[["modelA"]], scores[["modelB"]])
 diffTest
 
 
 ###################################################
-### code chunk number 10: nopaco.Rnw:135-140
+### code chunk number 10: nopaco.Rnw:130-135
 ###################################################
 coef(diffTest)
 diffTest$pvalue
@@ -115,7 +115,7 @@ diffTest$alpha
 
 
 ###################################################
-### code chunk number 11: nopaco.Rnw:154-163
+### code chunk number 11: nopaco.Rnw:149-158
 ###################################################
 library(MASS) ##Needed for rmvnorm
 
@@ -129,7 +129,7 @@ X0 <- mvrnorm(n=100,mu=c(0,0,0),Sigma=S)
 
 
 ###################################################
-### code chunk number 12: nopaco.Rnw:177-182
+### code chunk number 12: nopaco.Rnw:172-177
 ###################################################
 #Measurement errors replicate 1
 Z1 <- mvrnorm(n=100,mu=c(0,0,0),Sigma=diag(c(0,0,0)))                   
@@ -139,7 +139,7 @@ Z2 <- mvrnorm(n=100,mu=c(0,0,0),Sigma=diag(c(0,0.1,0.2)))
 
 
 ###################################################
-### code chunk number 13: nopaco.Rnw:188-193
+### code chunk number 13: nopaco.Rnw:183-188
 ###################################################
 #Replicate matrix 1: True expressions plus error
 X1 <- X0 + Z1
@@ -149,7 +149,7 @@ X2 <- X0 + Z2
 
 
 ###################################################
-### code chunk number 14: nopaco.Rnw:200-216
+### code chunk number 14: nopaco.Rnw:195-211
 ###################################################
 a<-data.frame(
 "replicate1"=exp(rowSums(X1[,1:2])),
@@ -170,7 +170,7 @@ scores = list(modelA=a,modelB=b)
 
 
 ###################################################
-### code chunk number 15: nopaco.Rnw:221-222
+### code chunk number 15: nopaco.Rnw:216-217
 ###################################################
 sessionInfo()
 

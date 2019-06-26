@@ -1,18 +1,18 @@
 //----------------------------------------------------------------
-// Name        : samplePsi.h
+// Name        : bootstrapCI.h
 // Author      : Rowan Kuiper
 // Version     : 1.0.1
 // Copyright   :
 // Description : concordance
 //----------------------------------------------------------------
 
-#ifndef __SAMPLEPSI_H__
-#define __SAMPLEPSI_H__
+#ifndef __BOOTSTRAPCI_H__
+#define __BOOTSTRAPCI_H__
 
 #define STRICT_R_HEADERS
 
 extern "C" {
-	SEXP samplePsi(SEXP rP_choleski,SEXP rP_mat1Missing,SEXP rP_mat2Missing,SEXP rP_nDraws,SEXP rP_nCPU);
+	SEXP bootstrapCI(SEXP MAT1,SEXP MAT2,SEXP rP_nDraws,SEXP rP_nCPU);
 }
 
-#endif /*__SAMPLEPSI_H__*/
+#endif /*__BOOTSTRAPCI_H__*/
