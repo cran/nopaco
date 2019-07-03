@@ -1,6 +1,11 @@
 NEWS file for the nopaco package
 
 --------------------------------
+Version 1.0.5
+* Reordered c++ headers to fix linking errors
+* Fixed protection inconsitentsies in c++ code
+
+--------------------------------
 Version 1.0.4
 * Avoids non-stable CI estimates by excluding replicates with less than 3 values in the concordance test for differences.
 * Now obtains confidence intervals by bootstrapping instead of assuming asympototic normality.
