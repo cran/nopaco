@@ -1,6 +1,6 @@
-3962dedd22ce63f2c387f153b5e3384a *DESCRIPTION
+38201607e2e873dc4342f470f9adbdc2 *DESCRIPTION
 05412bbf9c1a7d758f5b362e2f25f247 *NAMESPACE
-b3089743d0ac471258d47af2dd18ff0b *NEWS
+5080cbc522d75497d7aebdb81440514e *NEWS
 73100142382053ae733b600cac9b8b68 *R/allGenerics.R
 21349c9565e4237c18966fed7835de84 *R/concordance.test.R
 482db622dea886f220453d0033dcca5f *R/dataDoc.R
@@ -11,7 +11,7 @@ beafa042360d491236388c2529e21513 *build/vignette.rds
 72c64ec4037d7ae7cfc3ad7f73a969d8 *inst/CITATION
 d3a1192b36b92b5a72139a6c099259b4 *inst/doc/nopaco.R
 809811d7d2850d4297faaac3d1363ce8 *inst/doc/nopaco.Rnw
-68bec77517594572e493c045d6b929a4 *inst/doc/nopaco.pdf
+ccd7815260d53bae65efad825cef68a3 *inst/doc/nopaco.pdf
 d5be0f219e2fb8ef1f263a73a300f052 *man/ConcordanceTest-class.Rd
 934b3cace312ffdaf9c59517fcf0ccc4 *man/coef-methods.Rd
 80832bc050157e2bbb578b4885f423e2 *man/concordance.test.Rd
@@ -22,7 +22,7 @@ ce45e53eecb7a44cd4bc1bc095830784 *man/names-methods.Rd
 09242ffaefcf759d8cb33abb24b2264e *man/scores.Rd
 8b717f82d48ee7c485204ac9af5f2489 *src/Makevars
 e3d3cb360fbfdb3c6974e14eb5f09870 *src/Makevars.win
-cdbb67341ec2cdafc2b9813077ad2de3 *src/bootstrapCI.cpp
+62aceba489be9ab37d83e1226945c8de *src/bootstrapCI.cpp
 0d7506792b76b8e20b9be5ec9107a068 *src/bootstrapCI.h
 ae3d2e04957022727a8d336e6f8abd57 *src/exactdistribution.cpp
 b527279fc1ac640f3ef2c637b6acb392 *src/exactdistribution.h
